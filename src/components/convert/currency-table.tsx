@@ -3,7 +3,6 @@
 import {
     Table,
     TableBody,
-    TableCaption,
     TableCell,
     TableHead,
     TableHeader,
@@ -11,14 +10,12 @@ import {
 } from "@/components/ui/table"
 import {
     Card,
-    CardAction,
     CardContent,
     CardDescription,
-    CardFooter,
     CardHeader,
     CardTitle,
 } from "@/components/ui/card"
-import { Currency, currencies } from "@/data/currency"
+import { currencies } from "@/data/currency"
 
 export function CurrencyTable() {
     return (

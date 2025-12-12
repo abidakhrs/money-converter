@@ -3,10 +3,8 @@
 import React, { useState } from 'react'
 import {
     Card,
-    CardAction,
     CardContent,
     CardDescription,
-    CardFooter,
     CardHeader,
     CardTitle,
 } from "@/components/ui/card"
@@ -17,7 +15,6 @@ import { Button } from "@/components/ui/button"
 import {
     Form,
     FormControl,
-    FormDescription,
     FormField,
     FormItem,
     FormLabel,
@@ -31,8 +28,7 @@ import {
     SelectTrigger,
     SelectValue,
 } from "@/components/ui/select"
-import { toast } from 'sonner'
-import { Currency, currencies } from "@/data/currency"
+import { currencies } from "@/data/currency"
 import { ArrowLeftRight } from 'lucide-react'
 import { convertCurrency } from '@/lib/api'
 
@@ -56,7 +52,7 @@ const ConvertForm = () => {
 
     const [convertedResult, setConvertedResult] = useState<number | null>(null)
     const [isLoading, setIsLoading] = useState<boolean | null>(null)
-    
+
     type FormData = z.infer<typeof FormSchema>
 
     const form = useForm<z.infer<typeof FormSchema>>({
@@ -64,22 +60,22 @@ const ConvertForm = () => {
     })
 
     const onSubmit = async (data: FormData) => {
-          setIsLoading(true)
-          try {
-          const result = await convertCurrency({
-            from: data.old,
-            to: data.new,
-            value: data.value,
-          })
-          
-          setIsLoading(false)
-          setConvertedResult(result.new_amount);
+        setIsLoading(true)
+        try {
+            const result = await convertCurrency({
+                from: data.old,
+                to: data.new,
+                value: data.value,
+            })
+
+            setIsLoading(false)
+            setConvertedResult(result.new_amount);
 
         } catch (error) {
-          console.error(error)
-          alert('Conversion failed.')
+            console.error(error)
+            alert('Conversion failed.')
         }
-      }
+    }
 
     function swap() {
         const old = form.getValues("old");
